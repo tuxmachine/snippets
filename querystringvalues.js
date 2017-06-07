@@ -1,18 +1,13 @@
 // querystringvalues.js
-// https://github.com/bgrins/devtools-snippets
 // Print out key/value pairs from querystring.
 
-(function() {
-
-  var url = location;
-  var querystring = location.search.slice(1);
-  var tab = querystring.split("&").map(function(qs) {
-    return { "Key": qs.split("=")[0], "Value": qs.split("=")[1], "Pretty Value": decodeURIComponent(qs.split("=")[1]).replace(//g," ") }
-  });
-
-  console.group("Querystring Values");
-  console.log("URL: "+url+"\nQS:  "+querystring);
-  console.table(tab);
-  console.groupEnd("Querystring Values");
-
-})();
+(function parseQuery(qstr) {
+    var query = {};
+    var a = qstr.substr(1).split('&');
+    for (var i = 0; i < a.length; i++) {
+        var b = a[i].split('=');
+        query[decodeURIComponent(b[0])] = decodeURIComponent(b[1] || '');
+    }
+    console.log(query);
+    return query;
+})(window.location.search);
