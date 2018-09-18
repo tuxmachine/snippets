@@ -23,7 +23,7 @@
         e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null)
         a.dispatchEvent(e)
     }
-    console.export(data, filename) {
+    console.export = function(data, filename) {
         if(!data || !(data instanceof Array)) {
             console.error('Console.export: invalid data')
             return;
